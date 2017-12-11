@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crystal Collector</title>
+
+<!-- Bootstrap -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Added link to the jQuery library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<section>
+  <div class="container">
+    <div class="row" >
+      <div class="col-xs-12 text-center" style="background-color: #8EEEFA">
+        <h1 style= "color: black;">*Crystal Collector*</h1>
+		  <h3 style= "color: black;">*Game Rules*</h3>
+        <p style="color:white;"><ul class="list-group">
+  <li class="list-group-item" style="background-color: #8EEEFA">When the game begins, you will be given a target number</li>
+  <li class="list-group-item" style="background-color: #8EEEFA">Click the crystals below and try to match the target number</li>
+  <li class="list-group-item" style="background-color: #8EEEFA">If you match the target number, you win!</li>
+  <li class="list-group-item" style="background-color: #8EEEFA">If you exceed the target value, you lose...</li>
+  <li class="list-group-item" style="background-color: #8EEEFA">Keep playing and try to increase your overall win!</li>
+</ul></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+	<div class="container">
+		<div class="row">
+        	<div class="col-lg-12 text-center font-color: white">
+            	<h2>LET'S PLAY!</h2>
+            	<p>&nbsp;</p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-3 text-center">
+                <h3>TARGET</h3>
+                 <span id= "target-number"></span>
+            </div>
+			<div class="col-md-3 text-center">
+                <h3>SCORE</h3>
+                 <span id= "player-score"></span>
+            </div>
+        	<div class="col-md-3 text-center">
+                <h3>WINS</h3>
+                <h4><span id= "win-total"></span></h4>
+            </div>
+		  <div class="col-md-3 text-center">
+                <h3>LOSSES</h3>
+                <h4><span id= "loss-total"></span></h4>
+            </div>
+        </div>
+		<div class="row">
+       	  <div class="col-md-12 text-center" style="background-color: #8EEEFA" ></div>
+         <hr>	
+      </div>
+        <div class="row">
+        	<div class="col-md-3 text-center><img src="assets/images/BLUE.jpg" width="100" height="74" alt="Blue Gem" id="B1"></div>
+        	<div class="col-md-3 text-center "><img src="assets/images/green.jpg" width="100" height="75" alt="Green Gem" id="G2"></div>
+			<div class="col-md-3 text-center "><img src="assets/images/RED.jpg" width="100" height="76" alt="Red Gem" id="R3"></div>
+			<div class="col-md-3 text-center"><img src="assets/images/white copy.jpg" width="100" height="81" alt="White Gem" id="W4"></div>
+      </div>
+      <hr>
+		
+  </div>
+</section>
+<hr>
+<hr>
+<footer class="text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p>Copyright © Crystal Collector Games All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+	
+<script>
+	
+  var playerScore= 0; 
+  var wins= 0;
+  var losses = 0;
+  //This variable group asigns global containers meant to hold the palyer's score, wins and losses
+	
+	
+	$( document ).ready(function(){
+  var Target= Math.floor(Math.random()*101+19);
+  // This variable is responsible for holding the "random" # resulting from the math.random function
+  // The function returns a value between 19 - 120 per "design note #1"
+  //
+  $('#target-number').text(Target);
+  // This jQuery statement provides the "append" between the HTML doc id "target-number" 
+ // and the variable "Target" so that a readable value can be displayed to the player	
+  //
+  var bgem= Math.floor(Math.random()*11+1);
+  var ggem= Math.floor(Math.random()*11+1);
+  var rgem= Math.floor(Math.random()*11+1);
+  var wgem= Math.floor(Math.random()*11+1);
+  // This variable group captures the randomization fuctionality for the interactive gem elements
+  // The Math.random function is utilized to provide random number generation and satisfy the range 
+  // requirement [1-12] outlined in "design note #2 for Option 1
+ 
+$('#win-total').text(wins);
+$('#loss-total').text(losses);
+// This jQuery statement provides the "append" between the HTML doc ids "win-total" and "loss-total" 
+ // and the variables "wins" and "losses" so that a readable value can be displayed to the player
+		
+		
+function gameReset(){
+      Target= Math.floor(Math.random()*101+19);
+      console.log(Target);
+      $('#target-number').text(Target);
+      bgem= Math.floor(Math.random()*11+1);
+      ggem= Math.floor(Math.random()*11+1);
+      rgem= Math.floor(Math.random()*11+1);
+      wgem= Math.floor(Math.random()*11+1);
+      playerScore= 0;
+      $('#player-score').text(playerScore);
+      } 
+//This function serves as a reset to the win and loss functions below 						
+
+function forTheWin(){
+alert("Great Job! You Won!");
+  wins++; 
+  $('#win-total').text(wins);
+  gameReset();
+}
+//This function increses the player's wins after a successful round		
+
+function tkanL(){
+alert ("Give It Another Try!");
+  losses++;
+  $('#loss-total').text(losses);
+  gameReset();
+}
+		
+//This function increses the player's losses after an unsuccessful round			
+
+  $('#B1').on ('click', function(){
+    playerScore = playerScore + bgem;
+    console.log("playerScore= " + playerScore);
+    $('#player-score').text(playerScore); 
+        if (playerScore == Target){
+          forTheWin();
+        }
+        else if ( playerScore > Target){
+          tkanL();
+        }   
+  })  
+	//This function serves as an event listener and score keeper for the blue gem	
+		
+  $('#G2').on ('click', function(){
+    playerScore = playerScore + ggem;
+    console.log("playerScore= " + playerScore);
+    $('#player-score').text(playerScore); 
+          //sets win/lose conditions
+        if (playerScore == Target){
+          forTheWin();
+        }
+        else if ( playerScore > Target){
+          tkanL();
+        }   
+  })  
+		//This function serves as an event listener and score keeper for the green gem
+  $('#R3').on ('click', function(){
+    playerScore = playerScore + rgem;
+    console.log("playerScore= " + playerScore);
+    $('#player-score').text(playerScore); 
+          //sets win/lose conditions
+        if (playerScore == Target){
+          forTheWin();
+        }
+        else if ( playerScore > Target){
+          tkanL();
+        } 
+  })  
+		//This function serves as an event listener and score keeper for the red gem
+  $('#W4').on ('click', function(){
+    playerScore = playerScore + wgem;
+    console.log("playerScore= " + playerScore);
+    $('#player-score').text(playerScore); 
+          //sets win/lose conditions
+        if (playerScore == Target){
+          forTheWin();
+        }
+        else if ( playerScore > Target){
+          tkanL();
+        }
+  });   
+		//This function serves as an event listener and score keeper for the white gem
+}); 
+	</script>
+</body>
+</html>
